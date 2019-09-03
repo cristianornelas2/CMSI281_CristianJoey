@@ -1,3 +1,7 @@
+// SayHello.java
+// demonstrates basic intro Java syntax
+// to run this program: C>java SayHello
+////////////////////////////////////////////////////////////////
 import java.util.Scanner;
 
 public class SayHello {
