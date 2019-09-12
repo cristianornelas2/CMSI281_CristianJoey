@@ -14,7 +14,7 @@ public class TargetFile {
 	private String fileTarget;
 
 	public TargetFile(String in, String out) throws FileNotFoundException, IOException {
-		fileTarget = in + ".copy";
+		fileTarget = "Copy of " + in;
 		writer = new FileWriter(fileTarget);
 		writeFile(out);
 	}
@@ -25,6 +25,6 @@ public class TargetFile {
 
 	public void closeFile() throws FileNotFoundException, IOException {
 		writer.close();
-		System.out.println(fileTarget + "is closing");
+		System.out.println(fileTarget + " : shutting down");
 	}	
 }
