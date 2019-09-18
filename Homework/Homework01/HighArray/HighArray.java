@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////////
 package HighArray;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class HighArray
 {
@@ -82,11 +82,37 @@ public long getMax(){
    return sorted[sorted.length-1];
 }
 
-public boolean noDups(){
+public void noDups(){
 
-   //To Do
+   
 
-   return false;
+   long[] temp = a.clone();
+   Long[] boxed = new Long[temp.length];
+
+   //converting from long primitive to Long object array for usability
+
+   int i = 0;
+   for(long x:temp){
+      boxed[i++] = x;
+  }
+
+  //converting to set in order to restrict duplicates
+
+   Set<Long> tempSet = new HashSet<Long>(Arrays.asList(boxed));
+
+  //and finally, converting the set back into an array of primitives
+
+    Long[] almost = tempSet.toArray(new Long[tempSet.size()]);
+    long[] out = new long[almost.length];
+
+    i = 0;
+    for(Long x:almost){
+       out[i++] = x;
+    }
+
+    a = out;
+    nElems = out.length;
+
 }
 
 
