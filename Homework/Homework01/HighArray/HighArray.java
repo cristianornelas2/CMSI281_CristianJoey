@@ -6,7 +6,7 @@ package HighArray;
 
 import java.util.Arrays;
 
-class HighArray
+public class HighArray
 {
 
    private long[] a; // ref to array a
@@ -75,7 +75,7 @@ class HighArray
 
 public long getMax(){
 
-   long[] sorted = this.a;
+   long[] sorted = (this.a).clone();
 
    Arrays.sort(sorted);
 

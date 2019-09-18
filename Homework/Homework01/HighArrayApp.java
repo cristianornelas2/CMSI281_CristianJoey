@@ -2,8 +2,8 @@
 // demonstrates array class with high-level interface
 // to run this program: C>java HighArrayApp
 ////////////////////////////////////////////////////////////////
-package HighArray;
 
+import HighArray.*;
 
 class HighArrayApp
    {
@@ -38,6 +38,9 @@ class HighArrayApp
           arr.delete(00);                // delete 3 items
           arr.delete(55); 
           arr.delete(99);
+          arr.delete(88);
+          arr.delete(77);
+          arr.delete(66);
       
           System.out.println("--------Testing for GETMAX()--------");
             arr.insert(50);
@@ -46,6 +49,8 @@ class HighArrayApp
             arr.insert(75);
           System.out.println("Expects: 75   Got:  " + arr.getMax());
             arr.delete(75);
+            arr.delete(44);
+            arr.delete(33);
             arr.insert(25);
           System.out.println("Expects: 25   Got:  " + arr.getMax());
             arr.delete(25);
