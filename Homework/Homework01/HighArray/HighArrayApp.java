@@ -2,7 +2,8 @@
 // demonstrates array class with high-level interface
 // to run this program: C>java HighArrayApp
 ////////////////////////////////////////////////////////////////
-import HighArray.java*
+package HighArray;
+
 
 class HighArrayApp
    {
