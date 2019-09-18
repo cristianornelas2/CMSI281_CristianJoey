@@ -74,12 +74,18 @@ class HighArray
 
 
 public long getMax(){
-   //temp
-   return Long.parseLong("80");
+
+   long[] sorted = this.a;
+
+   Arrays.sort(sorted);
+
+   return sorted[sorted.length-1];
 }
 
 public boolean noDups(){
-   //temp
+
+   //To Do
+
    return false;
 }
 
