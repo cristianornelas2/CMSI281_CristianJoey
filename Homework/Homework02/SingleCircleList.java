@@ -2,7 +2,7 @@ class SingleCircleList{
     
     class Node{
 
-        public Object data;
+        public Object data; //can make strictly-typed, currently a general implementation
         public Node next;
 
         public Node(Object inD){
@@ -54,7 +54,7 @@ class SingleCircleList{
             nItems=0;
         }else{
             for(int i=0; i<nItems-1; i++){
-                step(); //move the pointer to one previous to current
+                step(); //move the pointer to Node previous to current
             }
             current.next = current.next.next;
             nItems--;
@@ -75,7 +75,7 @@ class SingleCircleList{
         
         int checked = 0;
         while(checked<nItems){
-            if(current.data==targetData){
+            if(current.data.equals(targetData)){ //mismatch errors may occur with noncomparable data types
                 return true;
             }else{
                 checked++;
@@ -108,8 +108,9 @@ class SingleCircleList{
 
         SingleCircleList list = new SingleCircleList(4);
         list.insert(3);
-        list.insert(2);
+        list.insert(true);
         list.insert(1);
+        list.insert("string!!!");
         list.display();
         list.step();
         list.remove();
@@ -121,6 +122,22 @@ class SingleCircleList{
 
         list.remove();
         list.display();
+
+        list.insert(5);
+        list.insert(5);
+        list.insert(5);
+        list.insert(5);
+        list.insert(5);
+        list.step();
+        list.step();
+        list.display();
+
+        System.out.println("Searching for [200]... " + list.contains(200));
+        System.out.println("Searching for [1]... " + list.contains(1));
+        System.out.println("Searching for [1000]... " + list.contains(1000));
+
+
+
     }
 
 }
