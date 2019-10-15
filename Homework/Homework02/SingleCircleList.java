@@ -30,7 +30,7 @@ class SingleCircleList{
         if(nItems>1){
             Node fresh = new Node(data, current.next);
             current.next = fresh;
-            cuurent = fresh;
+            current = fresh;
         }else if(nItems==1){
             Node fresh = new Node(data, current);
             current.next=fresh;
@@ -89,7 +89,7 @@ class SingleCircleList{
 
     public void display(){
         
-        String out = "This circular list contains " + nItems + "\n";
+        String out = "This circular list contains " + nItems + " items." + "\n";
         
         out+="\n" + "The contents of this list are: " + "\n";
 
@@ -103,6 +103,24 @@ class SingleCircleList{
         System.out.println(out);
     }
 
+    public static void main(String[] args){
 
+
+        SingleCircleList list = new SingleCircleList(4);
+        list.insert(3);
+        list.insert(2);
+        list.insert(1);
+        list.display();
+        list.step();
+        list.remove();
+        list.step();
+        list.insert(200);
+        list.step();
+
+        System.out.println("current is " + list.current.data + ", next is " + list.current.next.data +  "\n");
+
+        list.remove();
+        list.display();
+    }
 
 }
