@@ -106,6 +106,9 @@ class SingleCircleList{
     public static void main(String[] args){
 
 
+        //TESTING
+
+        /*
         SingleCircleList list = new SingleCircleList(4);
         list.insert(3);
         list.insert(true);
@@ -136,7 +139,7 @@ class SingleCircleList{
         System.out.println("Searching for [1]... " + list.contains(1));
         System.out.println("Searching for [1000]... " + list.contains(1000));
 
-
+        */
 
     }
 
