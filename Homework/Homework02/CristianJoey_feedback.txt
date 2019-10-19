@@ -1,0 +1,60 @@
+
+Homework02 Evaluation
+======================
+
+Nice job on this assignment, with a couple of comments:
+
+	Queue test says queue is full even though it has 4/5 items. Can continue to
+insert past size limit--should have an error printed/thrown.
+	Really nice job with the Deque tests!
+
+
+scores:
+=============================
+Queue.java
+   Queue class compiles                      1/1 pt.
+   display method exists                     1/1 pt.
+QueueApp.java
+   QueueApp class compiles                   1/1 pt.
+   tests insert()                            X 0/1 pt.
+   tests remove()                            1/1 pt.
+   tests display()                           X 0/1 pt.
+   tests wrap-around insert, remove, display 1/1 pt.
+Deque.java
+   Deque class compiles                      1/1 pt.
+   insertLeft method exists                  1/1 pt.
+   insertRight method exists                 1/1 pt.
+   removeLeft method exists                  1/1 pt.
+   removeRight method exists                 1/1 pt.
+   isEmpty method exists                     1/1 pt.
+   isFull method exists                      1/1 pt.
+DequeApp.java or main in Deque.java
+   tests insertLeft()                        1/1 pt.
+   tests insertRight()                       1/1 pt.
+   tests removeLeft()                        1/1 pt.
+   tests removeRight()                       1/1 pt.
+   tests isEmpty()                           1/1 pt.
+   tests isFull()                            1/1 pt.
+CircluarLinkedList.java
+   Circular linked list class compiles       1/1 pt.
+   insertion method works                    1/1 pt.
+   deletion method works                     1/1 pt.
+   searching method works                    1/1 pt.
+CircularStack.java
+   circular stack class compiles             1/1 pt.
+   tests work as advertised                  1/1 pt.
+Josephus.java
+   Josephus problem class                    0/2 pts.
+   works as advertised                       0/3 pts.
+
+Coding style
+   Good names, consistent indenting          4/4 pts.
+   Headers in all files                      2/5 pts.
+
+Total points is 30 for Queue, Deque, and Circular x2
+ extra credit is 0 points for Josephus
+-------------------
+ Grand total is 30 points
+
+you got 30 out of 35 which is 85.71% which is a B
+
