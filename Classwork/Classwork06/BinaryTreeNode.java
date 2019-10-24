@@ -3,6 +3,7 @@ public class BinaryTreeNode {
       public  int data;
       private BinaryTreeNode left;
       private BinaryTreeNode right;
+      public String output;
 
       BinaryTreeNode( int d ) {
           data = d;
