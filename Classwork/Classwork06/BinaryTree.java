@@ -17,32 +17,32 @@ public class BinaryTree {
 
          System.out.println("-----------TESTING preOrderPrinter()------------");
          System.out.println();
-         System.out.println("LEFT Subtree/Node of the Root");
+         System.out.println("Subtree/Node of the Root");
+         root.preOrderPrinter(root);
          root.preOrderPrinter( root.getChild( "L" ) );
-         System.out.println();
-         System.out.println("RIGHT Subtree/Node of the Root");
          root.preOrderPrinter( root.getChild( "R" ) );
          System.out.println();
          System.out.println();
+
+
          System.out.println("-----------TESTING postOrderPrinter()------------");
          System.out.println();
-         System.out.println("LEFT Subtree/Node of the Root");
+         System.out.println("Subtree/Node of the Root");
          root.postOrderPrinter( root.getChild( "L" ) );
-         System.out.println();
-         System.out.println("RIGHT Subtree/Node of the Root");
          root.postOrderPrinter( root.getChild( "R" ) );
+         root.postOrderPrinter(root);
          System.out.println();
          System.out.println();
+
+
          System.out.println("-----------TESTING inOrderPrinter()------------");
          System.out.println();
-         System.out.println("LEFT Subtree/Node of the Root");
+         System.out.println("Subtree/Node of the Root");
          root.inOrderPrinter( root.getChild( "L" ) );
-         System.out.println();
-         System.out.println("RIGHT Subtree/Node of the Root");
+         root.inOrderPrinter(root);
          root.inOrderPrinter( root.getChild( "R" ) );
          System.out.println();
          System.out.println();
-         System.exit(0);
 
       }
    }
