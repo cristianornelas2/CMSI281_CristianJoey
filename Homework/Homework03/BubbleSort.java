@@ -1,7 +1,14 @@
-/**
-     * Editors: Joey Pereira, Cristian Ornelas
-     * Function: The idea is to compare two numbers that are next to each other 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     * File name:  BubbleSort.java
+     * Authors: Joey Pereira, Cristian Ornelas
+     * Purpose: The idea is to compare two numbers that are next to each other 
                  in the list, starting at the back of the array and moving to the front.
+     *  Date          :  2019-11-07
+     *  Description   :  See purpose
+     *  Notes         :  None
+     *  Warnings      :  None
+     *  Exceptions    :  None
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  **/
 class BubbleSort {
 
@@ -19,7 +26,7 @@ class BubbleSort {
         nElems++;
     }
 
-    /* public void bSort() {
+     public void bSorted() {
         int out, in;
         for( out = nElems-1; out > 1; out-- ) {
             for ( in = 0; in < out; in++ ) {
@@ -28,7 +35,7 @@ class BubbleSort {
                 }
             }
         }
-    } */
+    }
 
     public void oddEvenSort() {
         for ( int j = 0; j < nElems; j++ ) {
@@ -87,6 +94,17 @@ class BubbleSort {
         threeItems.display();
         threeItems.oddEvenSort();
         threeItems.display();
+        
+        System.out.println( "\n---------------TESTING oddEvenSort() with previously sorted elements---------------");
+        BubbleSort prevSorted = new BubbleSort( 10 );
+        prevSorted.insert(5);
+        prevSorted.insert(15);
+        prevSorted.insert(27);
+        prevSorted.insert(30);
+        prevSorted.insert(49);
+        prevSorted.display();
+        prevSorted.oddEvenSort();
+        prevSorted.display();
 
         System.out.println( "----TESTING oddEvenSort() with 10 elements----");
         barray.insertSort(00);
