@@ -13,23 +13,64 @@ import java.util.*;
 
 public class Huffman{
 
+    private String initialEntry;
     private String[] letterDump;
     private TreeMap<Character,Integer> histogram;
-    public TreeMap<Character,String> translationTable;
+    public TreeMap<Character,String> toBinaryTranslationTable;
+    private TreeMap<String,Character> fromBinaryTranslationTable;
     private int highestFrequency;
     public HuffNode trueRoot;
     private HuffNode waitingSubtree;
 
     public Huffman(String entry){
 
-        int size = entry.length();
+        initialEntry = entry;
+        
+        InitializeLetterDump(); //builds an array of strings where each cell contains a monocharacter string
+        
+        BuildHistogram();   //using the length of each string in the letterDump, builds a histogram to determine frequency
+
+        
+        Map.Entry<Character,Integer> lowest = PullLowestHistogramValue();
+        int lowestInt = lowest.getValue();
+        char lowestChar = lowest.getKey();
+        histogram.remove(lowest.getKey());
+
+
+        Map.Entry<Character,Integer> secondLowest = PullLowestHistogramValue();     //Setting up tree with lowest two values
+        int secondLowestInt = secondLowest.getValue();
+        char secondLowestChar = secondLowest.getKey();
+        histogram.remove(secondLowest.getKey());
+
+
+        HuffNode leastestSubtree = new HuffNode(lowestInt+secondLowestInt);
+
+        leastestSubtree.L = new HuffNode(lowestChar);
+        leastestSubtree.R = new HuffNode(secondLowestChar);
+
+
+        PopulateTree(leastestSubtree);
+
+        trueRoot.codeString = "";
+        toBinaryTranslationTable = new TreeMap<Character,String>();
+        fromBinaryTranslationTable = new TreeMap<String,Character>();
+
+        SetCodestringOnChildren(trueRoot);
+
+
+        System.out.println("Binary Translation Table:    " + toBinaryTranslationTable + "\n");
+
+   }
+
+    private void InitializeLetterDump(){
+        int size = initialEntry.length();
         letterDump = new String[size];
 
         for(int i = 0; i<size; i++){
-            char toCheck = entry.charAt(i);
+            char toCheck = initialEntry.charAt(i);
 
             for(int j = 0; j<size; j++){
-                if(letterDump[j]== null) {
+                if(letterDump[j] == null) {
                     letterDump[j] = (""+toCheck);
                     break;
                 }else if(letterDump[j].charAt(0)==toCheck){
@@ -38,6 +79,9 @@ public class Huffman{
                 }
             }
         }
+    }
+
+    private void BuildHistogram(){
 
         histogram = new TreeMap<Character, Integer>();
         
@@ -45,60 +89,18 @@ public class Huffman{
         int currentHighest = -1;
         int histCount = 0;
         while(letterDump[histCount]!=null){
-            String packaging = letterDump[histCount++];
-            if(packaging.length()>currentHighest){currentHighest=packaging.length();}
-            histogram.put(packaging.charAt(0), packaging.length());
+            if(letterDump[histCount]!=null){
+                String packaging = letterDump[histCount++];
+                if(packaging.length()>currentHighest){currentHighest=packaging.length();}
+                histogram.put(packaging.charAt(0), packaging.length());
+            }else break;
         }
 
-        System.out.println("Setting highest frequency to " + currentHighest);
         highestFrequency = currentHighest;
 
-        System.out.println(histogram + "\n");
+        System.out.println("Histogram Generated! Letter occurences: " + histogram + "\n");
 
-        
-        Map.Entry<Character,Integer> lowest = PullLowestHistogramValue();
-        System.out.println("LOWEST: " + lowest + "\n");
-
-        int lowestInt = lowest.getValue();
-        char lowestChar = lowest.getKey();
-
-
-        histogram.remove(lowest.getKey());
-        System.out.println("Histogram after removing lowest: " + histogram + "\n");
-
-
-        Map.Entry<Character,Integer> secondLowest = PullLowestHistogramValue();
-        System.out.println("SECOND LOWEST: " + secondLowest + "\n");
-
-        int secondLowestInt = secondLowest.getValue();
-        char secondLowestChar = secondLowest.getKey();
-
-        histogram.remove(secondLowest.getKey());
-        System.out.println("Histogram after removing second lowest: " + histogram + "\n");
-
-        System.out.println(histogram + "\n");
-
-        HuffNode leastestSubtree = new HuffNode(lowestInt+secondLowestInt);
-
-        leastestSubtree.L = new HuffNode(lowestChar);
-        leastestSubtree.R = new HuffNode(secondLowestChar);
-
-        System.out.print("Keys stored. parent node: " + leastestSubtree.data + ", Left Child: " + leastestSubtree.L.data + ", Right Child: " + leastestSubtree.R.data + "\n");
-
-
-        PopulateTree(leastestSubtree);
-
-        trueRoot.codeString = "";
-        translationTable = new TreeMap<Character,String>();
-        SetCodestringOnChildren(trueRoot);
-
-        System.out.println(trueRoot.R.R.L.codeString);
-
-        System.out.println(translationTable);
-
-
-
-   }
+    }
 
    public int GetHighestHistogramFrequency(){
         int mostCheck = -1;
@@ -117,28 +119,27 @@ public class Huffman{
                     leastCheck = x.getValue();
                 }
             }
-            System.out.println("Returning from PullLowest with " + currentLowest + "\n");
-            //currentLowest = histogram.get(currentLowest.getKey());
             return currentLowest;
-        }return null;
+        }else return null; //If the histogram is empty
     }
 
 
     public void PopulateTree(HuffNode currentRoot){
 
-        if(histogram.isEmpty()){
-            trueRoot = new HuffNode((int)waitingSubtree.data+highestFrequency);
-            trueRoot.L = currentRoot;
+        if(histogram.isEmpty()){    //base case
             if(waitingSubtree!=null){
-            trueRoot.R = waitingSubtree;
+                trueRoot = new HuffNode((int)waitingSubtree.data+highestFrequency); //complete tree construction by linking final two subtrees
+                trueRoot.L = currentRoot;
+                trueRoot.R = waitingSubtree;
+            }else{
+                trueRoot = currentRoot;
             }
-            System.out.println("ALL DONE");
-            return;}
+            return;
+        }
 
 
         else{
-            if((int)currentRoot.data>highestFrequency){
-                System.out.println("NEED A NEW SUBTREE! Histogram population is currently " + histogram.size());
+            if((int)currentRoot.data>highestFrequency){ //checking if a new subtree is needed
 
                 if(waitingSubtree==null){
                     waitingSubtree = currentRoot;
@@ -162,31 +163,13 @@ public class Huffman{
                         HuffNode newRoot = new HuffNode(subNextLowInt+subSecNextLowInt);
                         newRoot.L = new HuffNode(subNextLowChar);
                         newRoot.R = new HuffNode(subSecNextLowChar);
-                        System.out.print("New Subtree forming! Keys stored. parent node: " + newRoot.data + ", Left Child: " + newRoot.L.data + ", Right Child: " + newRoot.R.data + "\n");
                         
-
-                        System.out.println(histogram + "\n");
-                        PopulateTree(newRoot);
+                        PopulateTree(newRoot);  //recursive case when new subtree is needed
                         return;
 
-                    }else{
-                        Map.Entry<Character,Integer> lastEntry = PullLowestHistogramValue();
-                        int lastValue = lastEntry.getValue();
-                        int lastChar = lastEntry.getKey();
-
-
-                        //need to check but idk if this is doing anything
-
-                        trueRoot = new HuffNode(lastValue+(int)waitingSubtree.data);
-                        trueRoot.L = currentRoot;
-                        trueRoot.R = waitingSubtree;
-                        
-                        System.out.println("All done!!!");
-                        return;
                     }
 
                 }else{
-                    System.out.print("Connecting Subtrees! \n");
                     HuffNode newSub = new HuffNode ((int)currentRoot.data+(int)waitingSubtree.data);
                     newSub.L = currentRoot;
                     newSub.R = waitingSubtree;
@@ -198,16 +181,13 @@ public class Huffman{
             int nextInt = nextLowest.getValue();
             char nextChar = nextLowest.getKey();
 
-            System.out.println("Removing key/value entry " + nextLowest + "\n");
             histogram.remove(nextChar);
             HuffNode addition = new HuffNode(nextInt+(int)currentRoot.data);
             addition.L = new HuffNode(nextChar);
             addition.R = currentRoot;
-            System.out.print("Keys stored. parent node: " + addition.data + ", Left Child: " + addition.L.data + ", Right Child: " + addition.R.data + "\n");
 
-            System.out.println(histogram);
 
-            PopulateTree(addition);
+            PopulateTree(addition); //standard recursive case
         }
 
     }
@@ -231,19 +211,73 @@ public class Huffman{
 
         if(current.L!=null){
         current.L.codeString = current.codeString + "0";
-        if(current.L.data instanceof Character){translationTable.put((char)current.L.data, current.L.codeString);}
+        if(current.L.data instanceof Character){
+            toBinaryTranslationTable.put((char)current.L.data, current.L.codeString);
+            fromBinaryTranslationTable.put(current.L.codeString,(char)current.L.data);
+
+        }
         SetCodestringOnChildren(current.L);
         }
 
         if(current.R!=null){
         current.R.codeString = current.codeString + "1";
-        if(current.R.data instanceof Character){translationTable.put((char)current.R.data, current.R.codeString);}
+        if(current.R.data instanceof Character){
+            toBinaryTranslationTable.put((char)current.R.data, current.R.codeString);
+            fromBinaryTranslationTable.put(current.R.codeString,(char)current.R.data);
+
+        }
         SetCodestringOnChildren(current.R);
         }
     }
 
+
+    public String GetBinary(){
+        String out = "";
+
+        char[] chars = initialEntry.toCharArray();
+        for(char x : chars){
+            out += toBinaryTranslationTable.get(x);
+        }
+
+        return out;
+    }
+
+    public String MessageFromBinary(String binary){
+        
+        String out = "";
+        String checking;
+
+        int startDex=0;
+        int endDex=1;
+
+        int stopping = binary.length();
+
+        while(endDex<stopping){
+            checking = binary.substring(startDex,endDex+1);
+            if(fromBinaryTranslationTable.containsKey(checking)){
+                out += fromBinaryTranslationTable.get(checking);
+                startDex = endDex + 1;
+                endDex = startDex + 1;
+            }else{
+                endDex++;
+            }
+        }
+
+        return out;
+    }
+
     public static void main(String[] args){
-        Huffman test = new Huffman("This string is a message that I am testing, yes I am testing this string, this message.");
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter a message with at least three unique characters...   ");
+        String toEncode = input.nextLine();
+
+        Huffman test = new Huffman(toEncode);
+
+        String binary = test.GetBinary();
+        System.out.println("Binary Encoding:     \n" + binary + "\n");
+        System.out.println("From Binary back to Message: \n" + test.MessageFromBinary(binary));
+
     }
     
 }
