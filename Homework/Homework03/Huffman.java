@@ -1,3 +1,14 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     * File name:  Huffman.java
+     * Authors: Joey Pereira, Cristian Ornelas
+     * Purpose: 
+     * Date:  2019-11-07
+     * Description:  See purpose
+     * Notes:  None
+     * Warnings:  None
+     * Exceptions:  None
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ **/
 import java.util.*;
 
 public class Huffman{
