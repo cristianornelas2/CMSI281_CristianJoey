@@ -2,12 +2,12 @@
      * File name:  BubbleSort.java
      * Authors: Joey Pereira, Cristian Ornelas
      * Purpose: The idea is to compare two numbers that are next to each other 
-                 in the list, starting at the back of the array and moving to the front.
-     *  Date          :  2019-11-07
-     *  Description   :  See purpose
-     *  Notes         :  None
-     *  Warnings      :  None
-     *  Exceptions    :  None
+                in the list, starting at the back of the array and moving to the front.
+     *  Date:  2019-11-07
+     *  Description:  See purpose
+     *  Notes:  None
+     *  Warnings:  None
+     *  Exceptions:  None
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  **/
 class BubbleSort {
