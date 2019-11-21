@@ -19,8 +19,6 @@ Assuming odd-even sort is correct, of course....
 
 Nice work on this assignment!
 Here are a couple of observations and comments:
-Looks like you changed a function name in Bubble Sort but didn't change all the tests--so
-be careful! Good thorough tests. Really nice job on Huffman!
 
 scores:
 =============================
@@ -38,6 +36,7 @@ SimonGame.java
    play again message on incorrect entry      X
    compiles                                   X
    works as advertised                        X
+   works as advertised                        1/1 pt.
 
 HuffmanCoding.java
    count character occurrences                1/1 pt.
@@ -52,10 +51,7 @@ Coding style                                  1/1 pt.
 Tests written to test all classes             0/1 pt.
 Headers in all files                          1/1 pt.
 
-Total credit is 12 for Sorter and either Simon or Huffman
- extra credit is 0 points for other of Simon or Huffman
 -------------------------
  Grand total is 12 points for all three
 
-you got 12 out of 14 which is 85.71% which is a B
 
