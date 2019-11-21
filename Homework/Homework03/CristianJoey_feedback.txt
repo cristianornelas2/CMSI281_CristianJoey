@@ -20,6 +20,15 @@ Assuming odd-even sort is correct, of course....
 Nice work on this assignment!
 Here are a couple of observations and comments:
 
+Looks like you changed a function name in Bubble Sort but didn't 
+change all the tests--so
+be careful! Good thorough tests. 
+Really nice job on Huffman!
+
+Simon doesn't erase the computer-generated letters so the user can
+still see the sequence.  Also doesn't present "play again" message
+on error input.  Otherwise, nice work! 
+
 scores:
 =============================
 OddEvenSorter.java
@@ -29,13 +38,12 @@ OddEvenSorter.java
    works as advertised                        1/1 pt.
 
 SimonGame.java
-   randomized array                           X
-   display/erase sequences                    X
-   check user's guess against array           X
-   increment letter count each iteration      X
-   play again message on incorrect entry      X
-   compiles                                   X
-   works as advertised                        X
+   randomized array                           1/1 pt.
+   display/erase sequences                    X 0/1 pt.
+   check user's guess against array           1/1 pt.
+   increment letter count each iteration      1/1 pt.
+   play again message on incorrect entry      X 0/1 pt.
+   compiles                                   1/1 pt.
    works as advertised                        1/1 pt.
 
 HuffmanCoding.java
@@ -51,7 +59,10 @@ Coding style                                  1/1 pt.
 Tests written to test all classes             0/1 pt.
 Headers in all files                          1/1 pt.
 
+Total credit is 14 for Sorter and either Simon or Huffman
+ extra credit is 7 points for other of Simon or Huffman
 -------------------------
- Grand total is 12 points for all three
+ Grand total is 21 points for all three
 
+you got 17 out of 14 which is 121.43% which is an A-plus
 
