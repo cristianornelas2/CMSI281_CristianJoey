@@ -8,138 +8,7 @@
      *  Exceptions    :  None
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  **/
-import java.util.*;
-class PriorityQ {
-
-  private int maxSize;
-  private Heap qHeap;
- 
-
-  public PriorityQ(int max) {
-    maxSize = max;
-    qHeap = new Heap(maxSize);
-  }
-
-  public int size(){
-    return qHeap.getSize();
-  }
-
-  public void insert(int item) {
-    qHeap.insert(item);
-  }
-
-  public int remove()
-  {
-    return qHeap.getNodeKey(qHeap.remove());
-  }
-
-  public long peekMax() 
-  {
-    return qHeap.getRoot();
-  }
-
-  public boolean isEmpty()
-  {
-    return qHeap.getSize() == 0;
-  }
-
-  public boolean isFull()
-  {
-    return qHeap.getSize() == maxSize;
-  }
-
-  public void displayQueue(){
-    int[] nQueue = new int[qHeap.getSize()];
-    for(int i = 0; i < qHeap.getSize(); i++){
-      nQueue[i] = qHeap.getNodeKey( qHeap.getArray()[i]);
-    }
-    Arrays.sort( nQueue );
-    for(int i = qHeap.getSize()-1; i >= 0; i --){
-      System.out.print( nQueue[i] + " " );
-    }
-  }
-
-
-  public static void main( String args[] ){
-    PriorityQ priorityQue = new PriorityQ( 10 );
-    System.out.println( "insert method" );
-    priorityQue.insert( 10 );
-    priorityQue.insert( 20 );
-    priorityQue.insert( 40 );
-    priorityQue.insert( 72 );
-    priorityQue.insert( 36 );
-    priorityQue.insert( 29 );
-    System.out.print("Display Queue: ");
-    priorityQue.displayQueue();
-  
-    System.out.println( "\nremove method" );
-    System.out.println( "Remove: " + priorityQue.remove() );
-    System.out.println( "Remove: " + priorityQue.remove() );
-    System.out.println( "Remove: " + priorityQue.remove() );
-    System.out.println( "Remove: " + priorityQue.remove() );
-    System.out.println( "Remove: " + priorityQue.remove() );
-    System.out.print("Display Queue: ");
-    priorityQue.displayQueue();
-  
-    System.out.println( "\nisEmpty method" );
-    priorityQue.insert( 13 );
-    priorityQue.insert( 83 );
-    priorityQue.insert( 45 );
-    System.out.print("Display Queue: ");
-    priorityQue.displayQueue();
-    System.out.println( "\nEmpty? " + priorityQue.isEmpty()  );
-    priorityQue.remove();
-    System.out.println( "Empty? " + priorityQue.isEmpty()  );
-    priorityQue.remove();
-    System.out.println( "Empty? " + priorityQue.isEmpty()  );
-    priorityQue.remove();
-    System.out.println( "Empty? " + priorityQue.isEmpty() );
-    priorityQue.remove();
-    System.out.println( "Empty? " + priorityQue.isEmpty() );
-  
-    System.out.println( "\nisFull method" );
-    priorityQue.insert( 20 );
-    priorityQue.insert( 38 );
-    System.out.print("Display Queue: ");
-    priorityQue.displayQueue();
-    System.out.println( "\nFull? " + priorityQue.isFull() );
-    priorityQue.insert( 69 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    priorityQue.insert( 16 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    priorityQue.insert( 48 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    priorityQue.insert( 20 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    priorityQue.insert( 99 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    priorityQue.insert( 60 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    priorityQue.insert( 40 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    priorityQue.insert( 25 );
-    System.out.println( "Full? " + priorityQue.isFull() );
-    System.out.print("Display Queue: ");
-    priorityQue.displayQueue();
-  }
-}
-
-////////////////////////////////////////////////////////////////
-class Node {
-  private int iData;             // data item (key)
-  // -----------------------------------------------------------
-  public Node(int key)           // constructor
-  { iData = key; }
-  // ------------------------------------------------------------
-  public int getKey()
-    { return iData; }
-  // ------------------------------------------------------------
-  public void setKey(int id)
-    { iData = id; }
-    // ------------------------------------------------------------
-  }  // end class Node
-  ////////////////////////////////////////////////////////////////
-  class Heap {
+class Heap {
     private Node[] heapArray;
     private int maxSize;           // size of array
     private int currentSize;       // number of nodes in array
@@ -157,6 +26,10 @@ class Node {
 
     public int getSize(){
       return currentSize;
+    }
+
+    public int getRoot(){
+        return heapArray[0].getKey();
     }
 
 
@@ -190,6 +63,11 @@ class Node {
       return root;
     }  // end remove()
     // ------------------------------------------------------------
+
+    public Node[] getArray(){
+  return heapArray;
+  // return the heapArray
+}  
     public void trickleDown(int index)
     {
       int largerChild;
@@ -265,3 +143,87 @@ class Node {
   }  // end displayHeap()
   // ------------------------------------------------------------
 }  // end class Heap
+
+class PriorityQ{
+    private int    maxSize;
+    private Heap   queHeap;
+    private int    nElems;
+
+    public PriorityQ(int max){ 
+        maxSize         = max;
+        queHeap         = new Heap(maxSize);
+        nElems          = 0;
+    }
+
+    public void insert(int elements){
+        queHeap.insert(elements);
+        nElems++;
+    }
+
+    public int remove(){ 
+        nElems--;
+        return queHeap.remove().getKey();
+    }
+
+    public int peekMax(){
+        return queHeap.getRoot();
+    }
+
+    public boolean isEmpty(){
+        return queHeap.isEmpty();
+    }
+
+    public boolean isFull(){
+        return nElems == maxSize;
+    }
+
+    public static void main(String[] args){
+        PriorityQ newPriority = new PriorityQ(20);
+        System.out.println("newPriority QUE INITIALIZED");
+        System.out.println("isEmpty() should return true: " + newPriority.isEmpty());
+        System.out.println("isFull() should return false: " + newPriority.isFull());
+        System.out.println();
+
+        for(int i = 0; i < 20; i++){
+            newPriority.insert(i+1);
+        }
+        System.out.println("1-10 INSERTED INTO newPriority");
+        System.out.println("isEmpty() should return false: " + newPriority.isEmpty());
+        System.out.println("isFull() should return true  : " + newPriority.isFull());
+        System.out.println("peekMax() should return 20   : " + newPriority.peekMax());
+        System.out.println();
+
+        for(int i = 0; i < 8; i++){
+            newPriority.remove();
+        }
+        System.out.println("REMOVE METHOD CALLED 4x's IN newPriority");
+        System.out.println("isEmpty() should return false: " + newPriority.isEmpty());
+        System.out.println("isFull() should return false : " + newPriority.isFull());
+        System.out.println("peekMax() should return 12 : " + newPriority.peekMax());
+        System.out.println();
+
+        for(int i = 0; i < 12; i++){
+            newPriority.remove();
+        }
+        System.out.println("REMOVE METHOD CALLED 6x's IN newPriority");
+        System.out.println("isEmpty() should return true: " + newPriority.isEmpty());
+        System.out.println("isFull() should return false: " + newPriority.isFull());
+        System.out.println("peekMax() should return 1 : " + newPriority.peekMax());
+        System.out.println();
+    }
+}
+////////////////////////////////////////////////////////////////
+class Node {
+  private int iData;             // data item (key)
+  // -----------------------------------------------------------
+  public Node(int key)           // constructor
+  { iData = key; }
+  // ------------------------------------------------------------
+  public int getKey()
+    { return iData; }
+  // ------------------------------------------------------------
+  public void setKey(int id)
+    { iData = id; }
+    // ------------------------------------------------------------
+  }  // end class Node
+  ////////////////////////////////////////////////////////////////
