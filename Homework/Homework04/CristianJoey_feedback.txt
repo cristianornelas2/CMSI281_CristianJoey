@@ -1,0 +1,50 @@
+
+Homework04 Evaluation
+======================
+
+Nice job on this assignment...
+Here are a couple of observations and comments:
+
+Nice job!! Missing some methods in the hashers.
+
+scores:
+=============================
+Tree Traverser
+   inOrderTraverser method implemented       1/1 pt.
+   2 test sets with at least minimal nodes   2/2 pts.
+   produces proper sequences                 2/2 pts.
+
+Priority Queue
+   Queue creation works correctly            1/1 pt.
+   insertion works correctly                 1/1 pt.
+   isFull() works correctly                  1/1 pt.
+   isEmpty() works correctly                 1/1 pt.
+   removal() works correctly                 1/1 pt.
+   heap representation works correctly       1/1 pt.
+
+Linear Probing String Hasher
+   menu works [gimme, has to work if there]  1/1 pt.
+   shows contents                            0/1 pt.
+   hash table created correctly              1/1 pt.
+   insertion works correctly                 1/1 pt.
+   linear probing works correctly            1/1 pt.
+   deletion works correctly                  0/1 pt.
+   finding works correctly                   0/1 pt.
+
+Digit Folding Hasher
+   menu works [gimme, has to work if there]  1/1 pt.
+   shows contents                            0/1 pt.
+   insertion works correctly                 1/1 pt.
+   linear probing works correctly            1/1 pt.
+   deletion works correctly                  0/1 pt.
+   finding works correctly                   0/1 pt.
+
+Coding style                                 1/1 pt.
+Tests written to test all classes            1/1 pt.
+Headers in all files                         4/4 pt.
+
+Total credit is 24 points
+-------------------------
+
+you got 24 out of 30 which is 80% which is a C-plus
+
